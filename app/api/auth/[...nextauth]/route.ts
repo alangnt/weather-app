@@ -1,6 +1,5 @@
 import NextAuth, { NextAuthOptions } from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
-import { JWT } from "next-auth/jwt";
 
 export const authOptions: NextAuthOptions = {
     providers: [
@@ -35,14 +34,26 @@ export const authOptions: NextAuthOptions = {
         signIn: '/login',
     },
     callbacks: {
-        async jwt({ token, user }) {
-          return { ...token, ...user };
-        },
-        async session({ session, token }) {
-          session.user = token as JWT;
+      async jwt({ token, user, trigger, session }) {
+          if (trigger === "update" && session?.country) {
+              token.country = session.country;
+          }
+          if (user) {
+              token.id = user.id;
+              token.country = user.country;
+          }
+          return token;
+      },
+      async session({ session, token }) {
+          session.user = {
+              id: token.id as string,
+              name: token.name,
+              email: token.email,
+              country: token.country as string
+          };
           return session;
-        },
-    },
+      },
+  },
 };
 
 const handler = NextAuth(authOptions);

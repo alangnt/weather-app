@@ -32,7 +32,8 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ 
       id: user.id,
       name: user.name,
-      email: user.email
+      email: user.email,
+      country: user.country,
     }, { status: 200 });
     
   } catch (err) {

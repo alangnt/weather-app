@@ -2,6 +2,7 @@
 
 import { MapPin } from "lucide-react";
 import { useState, useEffect, useRef, useLayoutEffect } from "react";
+import { useSession } from "next-auth/react";
 import Link from "next/link"
 import Image from "next/image"
 
@@ -17,6 +18,15 @@ export default function Home() {
   const contentRef = useRef<HTMLDivElement>(null);
   const apiKey = "25874f614b60f4c03a3eed09ed7e800d";
 
+  const { data: session, status } = useSession();
+
+  useEffect(() => {
+    if (status === "authenticated" && session?.user?.country) {
+      setSearchInput(session.user.country);
+      fetchWeather(null, session.user.country);
+    }
+  }, [status, session]);
+
   useEffect(() => {
     if (weatherData || (hasSearched && !weatherData)) {
       setShowContent(true);
@@ -29,20 +39,22 @@ export default function Home() {
     }
   }, [weatherData, hasSearched]);
 
-  async function fetchWeather(event: React.FormEvent<HTMLFormElement>) {
-    event.preventDefault();
+  async function fetchWeather(event: React.FormEvent<HTMLFormElement> | null, defaultCountry?: string) {
+    if (event) event.preventDefault();
     setHasSearched(true);
     setIsLoading(true);
     setShowContent(false);
     setContentHeight(0);
 
-    if (searchInput.trim() === "") {
+    const searchTerm = defaultCountry || searchInput;
+
+    if (searchTerm.trim() === "") {
       setWeatherData(null);
       setIsLoading(false);
       return;
     }
 
-    const capitalizedInput = searchInput.charAt(0).toUpperCase() + searchInput.slice(1);
+    const capitalizedInput = searchTerm.charAt(0).toUpperCase() + searchTerm.slice(1);
 
     try {
       const geocodeData = await getLonAndLat(capitalizedInput);
@@ -109,9 +121,15 @@ export default function Home() {
             <span className="text-lg font-medium trans-text">Weather App</span>
           </Link>
 
-          <Link href="/register" className="flex items-center gap-2 bg-muted px-4 py-1 rounded-3xl trans-border hover:scale-110 transition all duration-100" prefetch={false}>
-            <span className="text-lg font-medium trans-text">Sign Up</span>
-          </Link>
+          {status === "authenticated" ? (
+            <Link href="/profile" className="flex items-center gap-2 bg-muted px-4 py-1 rounded-3xl trans-border hover:scale-110 transition all duration-100" prefetch={false}>
+              <span className="text-lg font-medium trans-text">Profile</span>
+            </Link>
+          ) : (
+            <Link href="/register" className="flex items-center gap-2 bg-muted px-4 py-1 rounded-3xl trans-border hover:scale-110 transition all duration-100" prefetch={false}>
+              <span className="text-lg font-medium trans-text">Sign Up</span>
+            </Link>
+          )}
         </div>
       </header>
 
@@ -121,7 +139,7 @@ export default function Home() {
 
           <div className="flex flex-col justify-center items-center gap-2 rounded-3xl p-4 trans-background trans-border">
 
-            <form onSubmit={fetchWeather} className="flex items-center gap-2 rounded-3xl p-2 trans-border">
+            <form onSubmit={(e) => fetchWeather(e)} className="flex items-center gap-2 rounded-3xl p-2 trans-border">
               <MapPin className="trans-text" />
               <input
                 type="text"

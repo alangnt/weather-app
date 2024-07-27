@@ -48,13 +48,13 @@ export default function Login() {
     };
 
     if (sessionStatus === "loading") {
-        return <div>Loading...</div>;
+        return <div className="text-white">Loading...</div>;
     }
 
     return (
         <main className="flex-1 flex justify-center items-center">
             {session ? (
-                <div className='w-full max-w-md p-6 shadow-lg trans-background text-white trans-border rounded-3xl flex flex-col items-center justify-center gap-8'>
+                <div className='w-full max-w-sm p-6 shadow-lg trans-background text-white trans-border rounded-3xl flex flex-col items-center justify-center gap-8'>
                     <h1 className="text-3xl text-center">
                         Welcome back, {session.user?.name || 'User'}!
                     </h1>
@@ -63,7 +63,7 @@ export default function Login() {
                     </button>
                 </div>
             ) : (
-                <div className="w-full max-w-md p-6 shadow-lg trans-background text-white trans-border rounded-3xl">
+                <div className="w-full max-w-sm p-6 shadow-lg trans-background text-white trans-border rounded-3xl">
                     <div className="text-center">
                         <h1 className="text-3xl font-bold">Login</h1>
                         <p className="mt-2">Login to your account.</p>

@@ -59,13 +59,13 @@ export default function Register({ className }: CountriesProps) {
   return (
     <main className="flex-1 flex justify-center items-center">
       {submitted ? (
-        <div className='w-full max-w-md p-6 shadow-lg trans-background text-white trans-border rounded-3xl flex flex-col items-center justify-center gap-8'>
+        <div className='w-full max-w-sm p-6 shadow-lg trans-background text-white trans-border rounded-3xl flex flex-col items-center justify-center gap-8'>
           <p className='text-3xl text-center'>Thank you for registering, {formData.name}!</p>
 
           <Link href="/login" className="text-center hover:underline hover:scale-110">Please login now</Link>
         </div>
       ) : (
-        <div className="w-full max-w-md p-6 shadow-lg trans-background text-white trans-border rounded-3xl">
+        <div className="w-full max-w-sm p-6 shadow-lg trans-background text-white trans-border rounded-3xl">
           <div className="text-center">
             <h1 className="text-3xl font-bold">Register</h1>
             <p className="mt-2">Create your account to get started.</p>
