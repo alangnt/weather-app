@@ -51,7 +51,7 @@ export default function Home() {
     } finally {
       setIsLoading(false);
     }
-  }, [apiKey, searchInput]);
+  }, [searchInput]);
 
   useEffect(() => {
     if (status === "authenticated" && session?.user?.country && !hasSearched) {
