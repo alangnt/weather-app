@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import { cn } from '@/lib/utils'
 import "./globals.css";
 
+import SessionWrapper from "@/components/component/SessionWrapper";
+
 import { Analytics } from "@vercel/analytics/react"
 
 export const metadata: Metadata = {
@@ -22,7 +24,9 @@ export default function RootLayout({
           'antialiased',
         )}
       >
-        {children}
+        <SessionWrapper>
+          {children}
+        </SessionWrapper>
         <Analytics />
       </body>
     </html>
