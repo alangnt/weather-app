@@ -16,7 +16,7 @@ export default function Home() {
   const [showContent, setShowContent] = useState(false);
   const [contentHeight, setContentHeight] = useState(0);
   const contentRef = useRef<HTMLDivElement>(null);
-  const apiKey = "25874f614b60f4c03a3eed09ed7e800d";
+  const apiKey = "fc7d8227a7aa8b3bb26114f539a381fa";
 
   const { data: session, status } = useSession();
 
