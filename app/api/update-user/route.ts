@@ -2,7 +2,7 @@ import { getServerSession } from "next-auth/next";
 import { NextResponse } from "next/server";
 import { Pool } from 'pg';
 
-import { authOptions } from "../auth/[...nextauth]/route";
+import { authOptions } from "../auth/[...nextauth]/options";
 
 // Create a new pool instance
 const pool = new Pool({
