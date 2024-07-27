@@ -96,8 +96,8 @@ export default function Home() {
   }
 
   return (
-    <div className="flex flex-col min-h-[100dvh] bg-background">
-      <header className="sticky top-0 z-10 bg-background/80 backdrop-blur">
+    <div className="flex flex-col min-h-[100dvh]">
+      <header className="sticky top-0 z-10">
         <div className="container mx-auto px-4 py-4 flex items-center justify-center">
           <Link href="/" className="flex items-center gap-2" prefetch={false}>
             <CloudIcon className="w-6 h-6 trans-text" />
