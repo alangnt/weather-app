@@ -54,11 +54,11 @@ export default function Home() {
   }, [apiKey, searchInput]);
 
   useEffect(() => {
-    if (status === "authenticated" && session?.user?.country) {
+    if (status === "authenticated" && session?.user?.country && !hasSearched) {
       setSearchInput(session.user.country);
       fetchWeather(null, session.user.country);
     }
-  }, [status, session, fetchWeather]);
+  }, [status, session, fetchWeather, hasSearched]);
 
   useEffect(() => {
     if (weatherData || (hasSearched && !weatherData)) {
