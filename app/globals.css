@@ -20,7 +20,7 @@
   }
 
   .trans-background {
-    background: rgba(255, 255, 255, 0.1);
+    background: rgba(255, 255, 255, 0.2);
     backdrop-filter: blur(30px);
   }
 
@@ -39,5 +39,13 @@
   h5,
   h6 {
     @apply font-heading;
+  }
+
+  select {
+    color: inherit;
+  }
+
+  select option {
+    color: initial;
   }
 }

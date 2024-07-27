@@ -5,7 +5,7 @@ import { useState, useEffect, useRef, useLayoutEffect } from "react";
 import Link from "next/link"
 import Image from "next/image"
 
-import styles from './CloudAnimation.module.css';
+import Clouds from "@/components/component/Clouds";
 
 export default function Home() {
   const [weatherData, setWeatherData] = useState<WeatherData | null>(null);
@@ -100,17 +100,17 @@ export default function Home() {
   return (
     <div className="flex flex-col min-h-[100dvh] relative overflow-hidden">
 
-      <div className={styles.cloudContainer}>
-        <div className={`${styles.cloud} ${styles.cloud1}`}></div>
-        <div className={`${styles.cloud} ${styles.cloud2}`}></div>
-        <div className={`${styles.cloud} ${styles.cloud3}`}></div>
-      </div>
+      <Clouds />
 
       <header className="sticky top-0 z-10">
-        <div className="container mx-auto px-4 py-4 flex items-center justify-center">
+        <div className="container mx-auto px-4 py-4 flex items-center justify-between">
           <Link href="/" className="flex items-center gap-2" prefetch={false}>
             <CloudIcon className="w-6 h-6 trans-text" />
             <span className="text-lg font-medium trans-text">Weather App</span>
+          </Link>
+
+          <Link href="/register" className="flex items-center gap-2 bg-muted px-4 py-1 rounded-3xl trans-border hover:scale-110 transition all duration-100" prefetch={false}>
+            <span className="text-lg font-medium trans-text">Sign Up</span>
           </Link>
         </div>
       </header>
