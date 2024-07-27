@@ -1,7 +1,7 @@
 "use client"
 
 import { MapPin } from "lucide-react";
-import { useState, useEffect, useRef, useLayoutEffect } from "react";
+import { useState, useEffect, useRef, useLayoutEffect, useCallback } from "react";
 import { useSession } from "next-auth/react";
 import Link from "next/link"
 import Image from "next/image"
@@ -20,26 +20,7 @@ export default function Home() {
 
   const { data: session, status } = useSession();
 
-  useEffect(() => {
-    if (status === "authenticated" && session?.user?.country) {
-      setSearchInput(session.user.country);
-      fetchWeather(null, session.user.country);
-    }
-  }, [status, session]);
-
-  useEffect(() => {
-    if (weatherData || (hasSearched && !weatherData)) {
-      setShowContent(true);
-    }
-  }, [weatherData, hasSearched]);
-
-  useLayoutEffect(() => {
-    if (contentRef.current) {
-      setContentHeight(contentRef.current.scrollHeight);
-    }
-  }, [weatherData, hasSearched]);
-
-  async function fetchWeather(event: React.FormEvent<HTMLFormElement> | null, defaultCountry?: string) {
+  const fetchWeather = useCallback(async (event: React.FormEvent<HTMLFormElement> | null, defaultCountry?: string) => {
     if (event) event.preventDefault();
     setHasSearched(true);
     setIsLoading(true);
@@ -70,7 +51,26 @@ export default function Home() {
     } finally {
       setIsLoading(false);
     }
-  }
+  }, [apiKey, searchInput]);
+
+  useEffect(() => {
+    if (status === "authenticated" && session?.user?.country) {
+      setSearchInput(session.user.country);
+      fetchWeather(null, session.user.country);
+    }
+  }, [status, session, fetchWeather]);
+
+  useEffect(() => {
+    if (weatherData || (hasSearched && !weatherData)) {
+      setShowContent(true);
+    }
+  }, [weatherData, hasSearched]);
+
+  useLayoutEffect(() => {
+    if (contentRef.current) {
+      setContentHeight(contentRef.current.scrollHeight);
+    }
+  }, [weatherData, hasSearched]);
 
   function capitalizeFirstLetter(string: string) {
     return string.charAt(0).toUpperCase() + string.slice(1);
@@ -111,7 +111,6 @@ export default function Home() {
 
   return (
     <div className="flex flex-col min-h-[100dvh] relative overflow-hidden">
-
       <Clouds />
 
       <header className="sticky top-0 z-10">
@@ -134,11 +133,8 @@ export default function Home() {
       </header>
 
       <main className="flex-1 flex justify-center items-center">
-        <section
-          className="container mx-auto px-4 py-12 md:py-24 flex flex-col items-center justify-center gap-8 animate-fade-in">
-
+        <section className="container mx-auto px-4 py-12 md:py-24 flex flex-col items-center justify-center gap-8 animate-fade-in">
           <div className="flex flex-col justify-center items-center gap-2 rounded-3xl p-4 trans-background trans-border">
-
             <form onSubmit={(e) => fetchWeather(e)} className="flex items-center gap-2 rounded-3xl p-2 trans-border">
               <MapPin className="trans-text" />
               <input
@@ -189,11 +185,8 @@ export default function Home() {
                 ) : null}
               </div>
             </div>
-
           </div>
-
         </section>
-
       </main>
 
       <footer className="bg-muted py-6">
