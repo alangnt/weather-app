@@ -170,7 +170,7 @@ export default function Home() {
       </main>
 
       <footer className="bg-muted py-6">
-        <div className="container mx-auto px-4 flex items-center justify-between">
+        <div className="container mx-auto px-4 flex items-center justify-center">
           <p className="text-sm text-muted-foreground">&copy; 2024 Weather App. All rights reserved.</p>
         </div>
       </footer>
