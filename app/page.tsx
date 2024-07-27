@@ -5,6 +5,8 @@ import { useState, useEffect, useRef, useLayoutEffect } from "react";
 import Link from "next/link"
 import Image from "next/image"
 
+import styles from './CloudAnimation.module.css';
+
 export default function Home() {
   const [weatherData, setWeatherData] = useState<WeatherData | null>(null);
   const [hasSearched, setHasSearched] = useState(false);
@@ -96,7 +98,14 @@ export default function Home() {
   }
 
   return (
-    <div className="flex flex-col min-h-[100dvh]">
+    <div className="flex flex-col min-h-[100dvh] relative overflow-hidden">
+
+      <div className={styles.cloudContainer}>
+        <div className={`${styles.cloud} ${styles.cloud1}`}></div>
+        <div className={`${styles.cloud} ${styles.cloud2}`}></div>
+        <div className={`${styles.cloud} ${styles.cloud3}`}></div>
+      </div>
+
       <header className="sticky top-0 z-10">
         <div className="container mx-auto px-4 py-4 flex items-center justify-center">
           <Link href="/" className="flex items-center gap-2" prefetch={false}>
