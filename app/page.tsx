@@ -98,10 +98,10 @@ export default function Home() {
   return (
     <div className="flex flex-col min-h-[100dvh] bg-background">
       <header className="sticky top-0 z-10 bg-background/80 backdrop-blur">
-        <div className="container mx-auto px-4 py-4 flex items-center justify-between">
+        <div className="container mx-auto px-4 py-4 flex items-center justify-center">
           <Link href="/" className="flex items-center gap-2" prefetch={false}>
-            <CloudIcon className="w-6 h-6" />
-            <span className="text-lg font-medium">Weather App</span>
+            <CloudIcon className="w-6 h-6 trans-text" />
+            <span className="text-lg font-medium trans-text">Weather App</span>
           </Link>
         </div>
       </header>
@@ -110,16 +110,16 @@ export default function Home() {
         <section
           className="container mx-auto px-4 py-12 md:py-24 flex flex-col items-center justify-center gap-8 animate-fade-in">
 
-          <div className="flex flex-col justify-center items-center gap-2 border-2 border-black-300 rounded-3xl p-6 bg-primary">
+          <div className="flex flex-col justify-center items-center gap-2 rounded-3xl p-4 trans-background trans-border">
 
-            <form onSubmit={fetchWeather} className="flex items-center gap-2 border-2 border-black-300 rounded-3xl p-2 px-4 bg-background">
-              <MapPin className="text-black" />
+            <form onSubmit={fetchWeather} className="flex items-center gap-2 rounded-3xl p-2 trans-border">
+              <MapPin className="trans-text" />
               <input
                 type="text"
                 id="search"
                 name="search"
                 placeholder="Enter location"
-                className="outline-none bg-background capitalize"
+                className="outline-none bg-background capitalize trans-text"
                 value={searchInput}
                 onChange={(e) => setSearchInput(e.target.value)}
                 autoComplete="off"
@@ -128,7 +128,7 @@ export default function Home() {
                 spellCheck="false"
               />
               <button type="submit" disabled={isLoading}>
-                {isLoading ? <Spinner /> : <SearchIcon />}
+                {isLoading ? <Spinner /> : <SearchIcon className="trans-text" />}
               </button>
             </form>
 
@@ -147,8 +147,8 @@ export default function Home() {
                       className="weather-icon"
                     />
                     <div className="flex flex-col gap-2">
-                      <h2 className="text-xl font-bold text-center">{weatherData.name}</h2>
-                      <div className="text-center font-bold">
+                      <h2 className="text-xl font-bold text-center trans-text">{weatherData.name}</h2>
+                      <div className="text-center font-bold trans-text">
                         <p> {Math.round((weatherData.main.temp - 273.15) * 1.8 + 32)}°F / {Math.round(weatherData.main.temp - 273.15)}°C</p>
                         <p>{capitalizeFirstLetter(weatherData.weather[0].description)}</p>
                       </div>
@@ -157,7 +157,7 @@ export default function Home() {
                 ) : hasSearched ? (
                   <div className="flex flex-col items-center justify-center">
                     <Image src="/404-notfound.png" alt="not-found" width={200} height={200} />
-                    <h1 className="text-xl font-bold mt-4">Oops. Location not found!</h1>
+                    <h1 className="text-xl font-bold mt-4 trans-text">Oops. Location not found!</h1>
                   </div>
                 ) : null}
               </div>
@@ -171,7 +171,7 @@ export default function Home() {
 
       <footer className="bg-muted py-6">
         <div className="container mx-auto px-4 flex items-center justify-center">
-          <p className="text-sm text-muted-foreground">&copy; 2024 Weather App. All rights reserved.</p>
+          <p className="text-sm text-muted-foreground trans-text">&copy; 2024 Weather App. All rights reserved.</p>
         </div>
       </footer>
     </div>
