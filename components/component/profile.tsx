@@ -6,6 +6,7 @@ import Link from "next/link"
 import { UserRound } from "lucide-react";
 import { Separator } from "@/components/ui/separator"
 import { Button } from "@/components/ui/button"
+import { Input } from "@/components/ui/input"
 import Countries from "@/components/component/Countries"
 
 interface CountriesProps {
@@ -96,11 +97,22 @@ export default function Profile({ className }: CountriesProps) {
                                                 name="country"
                                                 value={formData.country}
                                                 onChange={handleChange}
-                                                required
                                                 className={`form-control rounded-full flex h-10 w-full border border-input bg-background p-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 ${className}`}
                                             >
                                                 <Countries />
                                             </select>
+
+                                            <section className='text-center flex flex-col items-center justify-center gap-2'>
+                                                <h2 className="text-xl font-bold">Or enter your city name</h2>
+                                                <Input
+                                                    type="text"
+                                                    name='country'
+                                                    value={formData.country}
+                                                    onChange={handleChange}
+                                                    placeholder="Enter your city name"
+                                                    className={`form-control rounded-full flex h-10 w-full border border-input bg-background p-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 ${className}`}
+                                                />
+                                            </section>
 
                                             <div className="flex justify-center items-center">
                                                 <Button type="submit" className="transition all duration-100 hover:scale-110 text-md">
