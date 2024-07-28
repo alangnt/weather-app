@@ -23,6 +23,7 @@ https://docs.google.com/presentation/d/1dsUSWWAddkP7C1cvlHFbb1MWHxiWVp0wbYjiohP4
 ## 🛠️ Getting Started
 
 First, run the development server:
+![day2](https://github.com/user-attachments/assets/004d958a-b605-4b09-8acc-44dbea440981)
 
 ```bash
 npm run dev
