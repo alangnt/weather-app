@@ -165,9 +165,9 @@ export default function Home() {
                     <Image
                       src={`https://openweathermap.org/img/wn/${weatherData.weather[0].icon}.png`}
                       alt={weatherData.weather[0].description}
-                      width={150}
-                      height={150}
-                      className="weather-icon"
+                      width={50}
+                      height={50}
+                      className="weather-icon w-full"
                     />
                     <div className="flex flex-col gap-2">
                       <h2 className="text-xl font-bold text-center trans-text">{weatherData.name}</h2>
