@@ -8,7 +8,7 @@ import { Analytics } from "@vercel/analytics/react"
 
 export const metadata: Metadata = {
   title: "Weather App",
-  description: "Get to know the weather from any location just by entering its name.",
+  description: "Get to know the weather from any location just by entering its name. Create an account to save your favorite locations.",
 };
 
 
