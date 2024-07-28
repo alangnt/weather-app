@@ -60,7 +60,7 @@ export default function Profile({ className }: CountriesProps) {
         <main className="flex-1 flex flex-col justify-center items-center gap-8">
             {session ? (
                 <>
-                    <div className="w-full max-w-sm p-6 shadow-lg trans-background text-white trans-border rounded-3xl">
+                    <div className="w-full max-w-sm p-6 text-white">
                         <section className="flex flex-col items-center justify-center gap-8">
                             <div className="text-center"><UserRound className="w-12 h-12" /></div>
                             <div className="flex flex-col items-center justify-center gap-2">
@@ -121,7 +121,7 @@ export default function Profile({ className }: CountriesProps) {
                     </div>
                 </>
             ) : (
-                <div className='w-full max-w-sm p-6 shadow-lg trans-background text-white trans-border rounded-3xl flex flex-col items-center justify-center gap-8'>
+                <div className='w-full max-w-sm p-6 text-white flex flex-col items-center justify-center gap-8'>
                     <h1 className="text-3xl text-center">
                         You are not connected...
                     </h1>

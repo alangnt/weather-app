@@ -54,7 +54,7 @@ export default function Login() {
     return (
         <main className="flex-1 flex justify-center items-center">
             {session ? (
-                <div className='w-full max-w-sm p-6 shadow-lg trans-background text-white trans-border rounded-3xl flex flex-col items-center justify-center gap-8'>
+                <div className='w-full max-w-sm p-6 text-white flex flex-col items-center justify-center gap-8'>
                     <h1 className="text-3xl text-center">
                         Welcome back, {session.user?.name || 'User'}!
                     </h1>
@@ -63,14 +63,14 @@ export default function Login() {
                     </button>
                 </div>
             ) : (
-                <div className="w-full max-w-sm p-6 shadow-lg trans-background text-white trans-border rounded-3xl">
+                <div className="w-full max-w-sm p-6 text-white">
                     <div className="text-center">
                         <h1 className="text-3xl font-bold">Login</h1>
                         <p className="mt-2">Login to your account.</p>
                     </div>
 
                     <form className="mt-8 space-y-8 trans-text" onSubmit={handleSubmit}>
-                        <div className="flex flex-col gap-2">
+                        <div className="flex flex-col gap-1">
                             <Label htmlFor="email" className="text-md">Email</Label>
                             <Input
                                 id="email"
@@ -83,7 +83,7 @@ export default function Login() {
                                 className="rounded-full" />
                         </div>
 
-                        <div className="flex flex-col gap-2">
+                        <div className="flex flex-col gap-1">
                             <Label htmlFor="password" className="text-md">Password</Label>
                             <Input
                                 id="password"

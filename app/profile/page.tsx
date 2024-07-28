@@ -5,7 +5,7 @@ import Link from "next/link";
 
 export default function LoginPage() {
     return (
-        <div className="flex flex-col min-h-[100dvh] relative overflow-hidden">
+        <div className="flex flex-col min-h-[100dvh] relative overflow-hidden trans-background">
             <Clouds />
 
             <header className="sticky top-0 z-10">
