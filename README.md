@@ -17,6 +17,9 @@ Our Global Weather App addresses these issues by providing:
 - 🌐 **Worldwide Coverage**: Access weather data for any city around the globe.
 - 🎨 **User-Friendly Interface**: Intuitive and attractive design for a better user experience.
 
+You can also find the pitch for our Weather App by following this link :
+https://docs.google.com/presentation/d/1dsUSWWAddkP7C1cvlHFbb1MWHxiWVp0wbYjiohP4YeI/edit#slide=id.gd9c453428_0_16
+
 ## 🛠️ Getting Started
 
 First, run the development server:
